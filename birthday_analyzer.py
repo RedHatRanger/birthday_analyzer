@@ -1,169 +1,111 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
-print("ENTER the two-digit month (mm):")
-mm=int(input())
-print("ENTER the two-digit day (dd):")
-dd=int(input())
-print("ENTER the two-digit year (yy):")
-yy=int(input())
+from datetime import datetime
 
-month = {
-	  1: "January",
-	  2: "February",
-	  3: "March",
-	  4: "April",
-	  5: "May",
-	  6: "June",
-	  7: "July",
-	  8: "August",
-	  9: "September",
-	10: "October",
-	11: "November",
-	12: "December",
+# Month names mapping
+month_names = {
+    1: "January", 2: "February", 3: "March", 4: "April",
+    5: "May", 6: "June", 7: "July", 8: "August",
+    9: "September", 10: "October", 11: "November", 12: "December",
 }
 
-mc = {
-	"January": 0,
-	"February": 3,
-	"March": 3,
-	"April": 6,
-	"May": 1,
-	"June": 4,
-	"July": 6,
-	"August": 2,
-	"September": 5,
-	"October": 0,
-	"November": 3,
-	"December": 5,
+# Element descriptions
+element_descriptions = {
+    "AIR": "AIR signs (that's Gemini, Libra, and Aquarius) are the thinkers, communicators, and doers of the zodiac. They analyze, synthesize, and probe. They breeze through life, never stopping to catch their breath.",
+    "WATER": "WATER signs—Cancer, Scorpio, and Pisces—are known for being sensitive and sentimental. They tend to hold on to people and items long past their expiration dates, and their emotions are deep.",
+    "EARTH": "EARTH signs (Taurus, Virgo, and Capricorn) are the most grounded peeps on the planet—you know, the ones who always keep it one hundred percent real. They're known to be stable, pragmatic, and unwavering.",
+    "FIRE": "FIRE signs (Aries, Leo, Sagittarius) are passionate, dynamic, and temperamental. They get angry quickly, but they also forgive easily. They are adventurers with immense energy.",
 }
 
-mc=mc.get(month.get(mm))
-		
+# Get user input
+while True:
+    try:
+        mm = int(input("ENTER the month (1-12): "))
+        if 1 <= mm <= 12:
+            break
+        print("Please enter a valid month (1-12).")
+    except ValueError:
+        print("Invalid input. Please enter a number.")
 
-def dayofbirth(mm, dd, yy, mc):
-	dow=(yy + int(yy/4) + mc + dd) % 7
-	return dow
+while True:
+    try:
+        dd = int(input("ENTER the day (1-31): "))
+        if 1 <= dd <= 31:
+            break
+        print("Please enter a valid day (1-31).")
+    except ValueError:
+        print("Invalid input. Please enter a number.")
 
-def get_dow(dow):
-	if dow==0:
-	    day="Sunday"
-	elif dow==1:
-		day="Monday"
-	elif dow==2:
-		day="Tuesday"
-	elif dow==3:
-		day="Wednesday"
-	elif dow==4:
-		day="Thursday"
-	elif dow==5:
-		day="Friday"
-	else:
-		day="Saturday"
-	return day
-	
+while True:
+    try:
+        yy = input("ENTER the year (YYYY or YY): ").strip()
+        if len(yy) == 2:
+            # Convert to 1900s or 2000s based on user prompt
+            century = input("Were you born in the 2000s? (Yes/No): ").strip().lower()
+            if century in ["yes", "y"]:
+                year = int("20" + yy)
+            else:
+                year = int("19" + yy)
+        elif len(yy) == 4:
+            year = int(yy)
+        else:
+            print("Please enter a valid year in YY or YYYY format.")
+            continue
+        break
+    except ValueError:
+        print("Invalid input. Please enter a valid year.")
+
+# Day of week calculation using datetime for accuracy
+try:
+    birthday = datetime(year, mm, dd)
+    dow_name = birthday.strftime("%A")
+except ValueError:
+    print("Invalid date entered. Please check your inputs.")
+    exit(1)
+
+# Zodiac sign calculation
 def get_sign(mm, dd):
-	if mm == 1 and dd <= 19:
-		sign="Capricorn"
-	elif mm == 12 and dd > 20:
-		sign="Capricorn"
-	elif mm == 1 and dd > 19:
-		sign="Aquarius"
-	elif mm == 2 and dd <= 18:
-		sign="Aquarius"
-	elif mm == 2 and dd > 18:
-		sign="Pisces"
-	elif mm == 3 and dd <= 20:
-		sign="Pisces"
-	elif mm == 3 and dd > 20:
-		sign="Aries"
-	elif mm == 4 and dd <= 20:
-		sign="Aries"
-	elif mm == 4 & dd > 20:
-		sign="Taurus"
-	elif mm == 5 and dd <= 20:
-		sign="Taurus"
-	elif mm == 5 and dd > 20:
-		sign="Gemini"
-	elif mm == 6 and dd <= 21:
-		sign="Gemini"
-	elif mm == 6 and dd > 21:
-		sign="Cancer"
-	elif mm == 7 and dd <= 22:
-		sign="Cancer"
-	elif mm == 7 and dd > 22:
-		sign="Leo"
-	elif mm == 8 and dd <= 22:
-		sign="Leo"
-	elif mm == 8 and dd > 22:
-		sign="Virgo"
-	elif mm == 9 and dd <= 22:
-		sign="Virgo"
-	elif mm == 9 and dd > 22:
-		sign="Libra"
-	elif mm == 10 and dd <= 22:
-		sign="Libra"
-	elif mm == 10 and dd > 22:
-		sign="Scorpio"
-	elif mm == 11 and dd <= 21:
-		sign="Scorpio"
-	else:
-		sign="Sagittarius"
-	return sign
-	
+    if (mm == 1 and dd <= 19) or (mm == 12 and dd > 21):
+        return "Capricorn"
+    elif (mm == 1 and dd > 19) or (mm == 2 and dd <= 18):
+        return "Aquarius"
+    elif (mm == 2 and dd > 18) or (mm == 3 and dd <= 20):
+        return "Pisces"
+    elif (mm == 3 and dd > 20) or (mm == 4 and dd <= 19):
+        return "Aries"
+    elif (mm == 4 and dd > 19) or (mm == 5 and dd <= 20):
+        return "Taurus"
+    elif (mm == 5 and dd > 20) or (mm == 6 and dd <= 20):
+        return "Gemini"
+    elif (mm == 6 and dd > 20) or (mm == 7 and dd <= 22):
+        return "Cancer"
+    elif (mm == 7 and dd > 22) or (mm == 8 and dd <= 22):
+        return "Leo"
+    elif (mm == 8 and dd > 22) or (mm == 9 and dd <= 22):
+        return "Virgo"
+    elif (mm == 9 and dd > 22) or (mm == 10 and dd <= 22):
+        return "Libra"
+    elif (mm == 10 and dd > 22) or (mm == 11 and dd <= 21):
+        return "Scorpio"
+    else:
+        return "Sagittarius"
+
 def get_element(sign):
-	if sign == "Aries":
-		element="FIRE"
-	elif sign == "Sagittarius":
-		element="FIRE"
-	elif sign == "Leo":
-		element="FIRE"
-	elif sign == "Libra":
-		element="AIR"
-	elif sign == "Aquarius":
-		element="AIR"
-	elif sign == "Gemini":
-		element="AIR"
-	elif sign == "Scorpio":
-		element="WATER"
-	elif sign == "Cancer":
-		element="WATER"
-	elif sign == "Pisces":
-		element="WATER"
-	else:
-		element="EARTH"
-	return element
-	
-list = {
-	"AIR": "\tAIR signs (thats Gemini, Libra, and Aquarius) are the thinkers, communicators, and doers of the zodiac. They analyze, synthesize, and probe. They breeze through life, never stopping to catch their breath. They have a live and let live mentality, and their intelligence helps them make decisions easily.",	"FIRE": "\tThe FIRE element is one of spontaneity, inspiration, intuition, and big passions. Fiery guys and gals are excitable and impulsive and love to light a fire under others. The fire signs are Aries, Leo, and Sagittarius. ... Fire signs are known to be intuitive and to rely on gut instincts.",
-	"WATER": "\tWATER signs—Cancer, Scorpio, and Pisces—are known for being sensitive and sentimental. They tend to hold on to people and items long past their expiration dates, and their emotions are always flowing like the waves of the oceans.",
-	"EARTH": "\tEARTH signs (Taurus, Virgo, and Capricorn) are the most grounded peeps on the planet—you know, the ones who always keep it one hundred percent real. They're known to be stable, pragmatic, and unwavering. Slow to anger, it takes a lot of effort to get them frustrated.",
-}
+    if sign in ["Aries", "Leo", "Sagittarius"]:
+        return "FIRE"
+    elif sign in ["Gemini", "Libra", "Aquarius"]:
+        return "AIR"
+    elif sign in ["Cancer", "Scorpio", "Pisces"]:
+        return "WATER"
+    else:
+        return "EARTH"
 
-print("Is this for 2000s? (Yes/No)")
-century=input()
-if century == "Yes" or century == "yes":
-	print("Then simply subract 1 day")
-elif century == "No" or century == "no":
-   print(" ")
-else:
-	print("Invalid Answer")
-	
-	
-born=get_dow(dayofbirth(mm, dd, yy, mc))
-born2=get_dow(dayofbirth(mm, dd, yy, mc) - 1)
-print(" ")
+sign = get_sign(mm, dd)
+element = get_element(sign)
 
-remainder=yy%4
-if remainder == 0 and mm == 1:
-	print("You were born on a", born2)
-elif remainder == 0 and mm == 2:
-	print("You were born on a", born2)
-else:
-	print("You were born on a", born)
-
-signs=get_sign(mm, dd)
-print("You are a(n)", signs)
-elements=get_element(get_sign(mm, dd))
-print("Your element is", elements)
-print(" ")
-print(list.get(elements))
+print()
+print(f"You were born on a {dow_name}.")
+print(f"Your sign is {sign}.")
+print(f"Your element is {element}.")
+print()
+print(element_descriptions[element])
