@@ -9,3 +9,67 @@
 ## About
 
 Welcome to **Birthday Analyzer** — a simple yet powerful Python tool to analyze birthdays! Whether you want to extract interesting facts, calculate age, or just have fun with dates, this tool has you covered.
+
+```
+   ____  _     _     _       _                 
+  | __ )| |__ (_) __| | __ _| |_ ___  _ __ ___ 
+  |  _ \| '_ \| |/ _` |/ _` | __/ _ \| '__/ _ \
+  | |_) | | | | | (_| | (_| | || (_) | | |  __/
+  |____/|_| |_|_|\__,_|\__,_|\__\___/|_|  \___|
+                                              
+```
+
+---
+
+## Features
+
+- Analyze any birthday date input
+- Calculate age and time until next birthday
+- Provide fun insights based on the birthday
+- Easy to use Python script
+
+---
+
+## Installation
+
+Make sure you have Python 3.8 or higher installed.
+
+```bash
+git clone https://github.com/RedHatRanger/birthday_analyzer.git
+cd birthday_analyzer
+```
+
+---
+
+## Usage
+
+Run the analyzer script:
+
+```bash
+python birthday_analyzer.py
+```
+
+Follow the prompts to enter a birthday and get your analysis!
+
+---
+
+## License
+
+This project is licensed under the Apache-2.0 License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+## Contributing
+
+Contributions are welcome! Feel free to open issues or submit pull requests.
+
+---
+
+## Contact
+
+Created by RedHatRanger.  
+Feel free to reach out for questions or suggestions!
+
+---
+
+*Made with ❤️ and Python 🐍*
