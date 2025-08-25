@@ -11,10 +11,26 @@ month_names = {
 
 # Element descriptions
 element_descriptions = {
-    "AIR": "AIR signs (that's Gemini, Libra, and Aquarius) are the thinkers, communicators, and doers of the zodiac. They analyze, synthesize, and probe. They breeze through life, never stopping to catch their breath.",
-    "WATER": "WATER signs—Cancer, Scorpio, and Pisces—are known for being sensitive and sentimental. They tend to hold on to people and items long past their expiration dates, and their emotions are deep and powerful.",
-    "EARTH": "EARTH signs (Taurus, Virgo, and Capricorn) are the most grounded peeps on the planet—you know, the ones who always keep it one hundred percent real. They're known to be stable, pragmatic, and unwavering.",
-    "FIRE": "FIRE signs (Aries, Leo, Sagittarius) are passionate, dynamic, and temperamental. They get angry quickly, but they also forgive easily. They are adventurers with immense energy.",
+    "AIR": (
+        "AIR signs (that's Gemini, Libra, and Aquarius) are the thinkers, "
+        "communicators, and doers of the zodiac. They analyze, synthesize, "
+        "and probe. They breeze through life, never stopping to catch their breath."
+    ),
+    "WATER": (
+        "WATER signs—Cancer, Scorpio, and Pisces—are known for being sensitive and "
+        "sentimental. They tend to hold on to people and items long past their "
+        "expiration dates, and their emotions are deep and powerful."
+    ),
+    "EARTH": (
+        "EARTH signs (Taurus, Virgo, and Capricorn) are the most grounded peeps on the "
+        "planet—you know, the ones who always keep it one hundred percent real. They're "
+        "known to be stable, pragmatic, and unwavering."
+    ),
+    "FIRE": (
+        "FIRE signs (Aries, Leo, Sagittarius) are passionate, dynamic, and temperamental. "
+        "They get angry quickly, but they also forgive easily. They are adventurers with "
+        "immense energy."
+    ),
 }
 
 # Get user input
